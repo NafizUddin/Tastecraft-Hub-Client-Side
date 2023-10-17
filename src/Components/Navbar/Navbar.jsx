@@ -1,11 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { useState } from "react";
+import { useContext } from "react";
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
+import { MyContext } from "../../Main Layout/MainLayout";
 
 const Navbar = () => {
-  const [isButtonOn, setIsButtonOn] = useState(true);
+  const { isButtonOn, setIsButtonOn } = useContext(MyContext);
+
+  const handleToggle = () => {
+    setIsButtonOn((prevState) => !prevState);
+    if (isButtonOn) {
+      document.body.style.backgroundColor = "#0e2433";
+      //   #0a0f18
+    } else {
+      document.body.style.backgroundColor = "white";
+    }
+  };
 
   const links = (
     <>
@@ -25,7 +36,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/addProduct"
+          to="/addItems"
           className={({ isActive, isPending }) =>
             isActive
               ? "bg-[#D72323] px-3 py-2 rounded text-white"
@@ -34,7 +45,7 @@ const Navbar = () => {
               : ""
           }
         >
-          Add Product
+          Add Items
         </NavLink>
       </li>
       <li>
@@ -55,7 +66,8 @@ const Navbar = () => {
   );
   return (
     <div className="pt-2">
-      <div className="navbar bg-base-100">
+      {/* style={{ backgroundColor: isButtonOn ? "white" : "#0a0f18" }} */}
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -81,7 +93,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <img src={logo} className="w-[300px]"></img>
+          <img src={logo} className="hidden md:block w-[300px]"></img>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal px-1 gap-6 text-[#D72323]">{links}</ul>
@@ -97,13 +109,13 @@ const Navbar = () => {
                 Sign In
               </button>
             </Link>
-            <button onClick={() => setIsButtonOn(!isButtonOn)}>
+            <button onClick={handleToggle}>
               {isButtonOn ? (
-                <div className="text-3xl">
+                <div className="text-3xl text-[#D72323]">
                   <MdDarkMode />
                 </div>
               ) : (
-                <div className="text-3xl">
+                <div className="text-4xl text-[#D72323]">
                   <CiLight />
                 </div>
               )}
