@@ -1,0 +1,11 @@
+import Navbar from "../../Components/Navbar/Navbar";
+
+const MyCart = () => {
+  return (
+    <div>
+      <Navbar></Navbar>
+    </div>
+  );
+};
+
+export default MyCart;

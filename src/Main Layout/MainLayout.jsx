@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="md:container md:mx-auto mx-8">
       <Outlet></Outlet>
     </div>
   );
