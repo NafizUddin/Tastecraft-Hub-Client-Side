@@ -14,6 +14,8 @@ const MainRoute = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () =>
+          fetch("https://tastecraft-hub-server-side.vercel.app/brands"),
       },
       {
         path: "/addItems",

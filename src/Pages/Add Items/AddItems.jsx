@@ -4,6 +4,7 @@ import { MyContext } from "../../Main Layout/MainLayout";
 import Footer from "../../Components/Footer/Footer";
 import redLogo from "../../assets/logo.png";
 import whiteLogo from "../../assets/whitelogo.png";
+import Swal from "sweetalert2";
 
 const AddItems = () => {
   const { isButtonOn } = useContext(MyContext);
@@ -36,6 +37,22 @@ const AddItems = () => {
       description,
     };
     console.log(item);
+
+    fetch("https://tastecraft-hub-server-side.vercel.app/items", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(item),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire("Good job!", "You added a new item", "success");
+          form.reset();
+        }
+      });
   };
 
   return (
