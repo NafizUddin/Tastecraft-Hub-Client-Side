@@ -104,7 +104,7 @@ const Navbar = () => {
               src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-and-shapes-3/177800/131-512.png"
               className="w-10"
             />
-            <Link>
+            <Link to="/login">
               <button className="bg-[#D72323] hover:bg-[#ac1919] px-4 py-3 rounded-lg text-white">
                 Sign In
               </button>

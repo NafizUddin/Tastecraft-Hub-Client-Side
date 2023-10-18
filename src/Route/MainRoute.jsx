@@ -4,6 +4,8 @@ import ErrorPage from "../Error Page/ErrorPage";
 import Home from "../Pages/Home/Home";
 import MyCart from "../Pages/My Cart/MyCart";
 import AddItems from "../Pages/Add Items/AddItems";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const MainRoute = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const MainRoute = createBrowserRouter([
       {
         path: "/myCart",
         element: <MyCart></MyCart>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },

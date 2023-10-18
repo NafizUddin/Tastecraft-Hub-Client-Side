@@ -88,7 +88,8 @@ const AddItems = () => {
           <div className="flex gap-7 px-8 mb-4">
             <div className="flex-1">
               <label
-                className="text-lg font-semibold text-[#D72323]"
+                style={{ color: isButtonOn ? "#D72323" : "white" }}
+                className="text-lg font-semibold"
                 htmlFor="name"
               >
                 Item Name
@@ -97,6 +98,7 @@ const AddItems = () => {
               <input
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 type="text"
+                required
                 name="name"
                 placeholder="Enter Item Name"
                 className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
@@ -104,13 +106,15 @@ const AddItems = () => {
             </div>
             <div className="flex-1">
               <label
-                className="text-lg font-semibold text-[#D72323]"
+                style={{ color: isButtonOn ? "#D72323" : "white" }}
+                className="text-lg font-semibold"
                 htmlFor="chef"
               >
                 Brand Name
               </label>{" "}
               <br />
               <select
+                required
                 onChange={(e) => setSelectedBrand(e.target.value)}
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 className="my-2 border border-[#D72323] text-sm focus:ring-red-500 focus:border-red-500 block w-full py-3 px-4 rounded"
@@ -128,13 +132,15 @@ const AddItems = () => {
           <div className="flex gap-7 px-8 mb-4">
             <div className="flex-1">
               <label
-                className="text-lg font-semibold text-[#D72323]"
+                style={{ color: isButtonOn ? "#D72323" : "white" }}
+                className="text-lg font-semibold"
                 htmlFor="chef"
               >
                 Item Type
               </label>{" "}
               <br />
               <select
+                required
                 onChange={(e) => setSelectedType(e.target.value)}
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 className="my-2 border border-[#D72323] text-sm focus:ring-red-500 focus:border-red-500 block w-full py-3 px-4 rounded"
@@ -144,13 +150,17 @@ const AddItems = () => {
                 <option value="Pizza">Pizza</option>
                 <option value="Chicken">Chicken</option>
                 <option value="Beverages">Beverages</option>
-                <option value="Sides">Sides</option>
+                <option value="Desserts">Desserts</option>
                 <option value="Coffee">Coffee</option>
+                <option value="Sandwich">Sandwich</option>
+                <option value="Meal">Meal</option>
+                <option value="Pasta">Pasta</option>
               </select>
             </div>
             <div className="flex-1">
               <label
-                className="text-lg font-semibold text-[#D72323]"
+                style={{ color: isButtonOn ? "#D72323" : "white" }}
+                className="text-lg font-semibold"
                 htmlFor="name"
               >
                 Price
@@ -160,6 +170,7 @@ const AddItems = () => {
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 type="text"
                 name="price"
+                required
                 placeholder="Enter Item Price"
                 className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
               />
@@ -168,13 +179,15 @@ const AddItems = () => {
           <div className="flex gap-7 px-8 mb-4">
             <div className="flex-1">
               <label
-                className="text-lg font-semibold text-[#D72323]"
+                style={{ color: isButtonOn ? "#D72323" : "white" }}
+                className="text-lg font-semibold"
                 htmlFor="name"
               >
                 Image URL
               </label>{" "}
               <br />
               <input
+                required
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 type="text"
                 name="photo"
@@ -184,13 +197,15 @@ const AddItems = () => {
             </div>
             <div className="flex-1">
               <label
-                className="text-lg font-semibold text-[#D72323]"
+                style={{ color: isButtonOn ? "#D72323" : "white" }}
+                className="text-lg font-semibold"
                 htmlFor="chef"
               >
                 Item Rating
               </label>{" "}
               <br />
               <select
+                required
                 onChange={(e) => setSelectedRating(e.target.value)}
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 className="my-2 border border-[#D72323] text-sm focus:ring-red-500 focus:border-red-500 block w-full py-3 px-4 rounded"
@@ -206,12 +221,14 @@ const AddItems = () => {
           </div>
           <div className="px-8 mb-4">
             <label
-              className="text-lg font-semibold text-[#D72323]"
+              style={{ color: isButtonOn ? "#D72323" : "white" }}
+              className="text-lg font-semibold"
               htmlFor="description"
             >
               Details
             </label>
             <input
+              required
               style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
               type="text"
               name="description"
