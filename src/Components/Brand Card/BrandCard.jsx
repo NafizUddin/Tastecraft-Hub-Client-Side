@@ -26,13 +26,22 @@ const BrandCard = ({ brand }) => {
           </h4>
         </div>
         <div className="flex justify-center p-6 pt-2 gap-7">
-          <div className="cursor-pointer text-[#0165E1] text-xl">
+          <div
+            style={{ color: isButtonOn ? "#0165E1" : "white" }}
+            className="cursor-pointer text-xl"
+          >
             <FaFacebook></FaFacebook>
           </div>
-          <div className="ml-3 cursor-pointer text-[#0084b4] text-xl">
+          <div
+            style={{ color: isButtonOn ? "#0084b4" : "white" }}
+            className="ml-3 cursor-pointer text-xl"
+          >
             <FaTwitter></FaTwitter>
           </div>
-          <div className="ml-3 cursor-pointer text-[#C13584] text-xl">
+          <div
+            style={{ color: isButtonOn ? "#C13584" : "white" }}
+            className="ml-3 cursor-pointer text-xl"
+          >
             <FaInstagram></FaInstagram>
           </div>
         </div>

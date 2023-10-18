@@ -11,6 +11,10 @@ import certified from "../../assets/certificate.png";
 import online from "../../assets/online-order.png";
 import ScrollTrigger from "react-scroll-trigger";
 import CountUp from "react-countup";
+import foodAssurance from "../../assets/recommended-food.png";
+import onTime from "../../assets/clock.png";
+import freeDelivery from "../../assets/delivery.png";
+import support from "../../assets/help-desk.png";
 
 const Home = () => {
   const { isButtonOn } = useContext(MyContext);
@@ -188,6 +192,69 @@ const Home = () => {
         </div>
       </div>
       {/* About Us ends */}
+      {/* Why choose Us */}
+      <h1 className="text-[#D72323] text-center text-5xl font-bold mt-16">
+        Why Choose Us
+      </h1>
+      <div
+        data-aos="fade-down"
+        data-aos-easing="linear"
+        data-aos-duration="2000"
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mx-7 md:mx-8 xl:mx-0 my-8"
+      >
+        <div style={{ color: isButtonOn ? "black" : "white" }} className="card">
+          <figure className="px-10 pt-10">
+            <img src={foodAssurance} alt="" className="w-20" />
+          </figure>
+          <div className="card-body items-center text-center">
+            <h2 className="text-xl font-bold">Quality Guaranteed</h2>
+            <p>
+              Committed to top-tier quality, our food and beverage supplier
+              ensures rigorous testing and compliance with industry standards
+            </p>
+          </div>
+        </div>
+        <div style={{ color: isButtonOn ? "black" : "white" }} className="card">
+          <figure className="px-10 pt-10">
+            <img src={onTime} alt="" className="w-20" />
+          </figure>
+          <div className="card-body items-center text-center">
+            <h2 className="text-xl font-bold">Delivery On-time</h2>
+            <p>
+              With a punctual and reliable food delivery system, our food and
+              beverage supplier company guarantees timely arrivals to meet the
+              demands of our clients.
+            </p>
+          </div>
+        </div>
+        <div style={{ color: isButtonOn ? "black" : "white" }} className="card">
+          <figure className="px-10 pt-10">
+            <img src={freeDelivery} alt="" className="w-20" />
+          </figure>
+          <div className="card-body items-center text-center">
+            <h2 className="text-xl font-bold">Free Delivery</h2>
+            <p>
+              Enjoy the added convenience with our food and beverage supplier
+              company, offering free delivery to elevate your experience and
+              satisfaction.
+            </p>
+          </div>
+        </div>
+        <div style={{ color: isButtonOn ? "black" : "white" }} className="card">
+          <figure className="px-10 pt-10">
+            <img src={support} alt="" className="w-20" />
+          </figure>
+          <div className="card-body items-center text-center">
+            <h2 className="text-xl font-bold">Customer Support 24/7</h2>
+            <p>
+              Our food and beverage supplier company provides round-the-clock
+              customer support, ensuring responsive assistance whenever you need
+              it, to enhance your experience with us.
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* why choose us ends */}
       <Footer></Footer>
     </div>
   );
