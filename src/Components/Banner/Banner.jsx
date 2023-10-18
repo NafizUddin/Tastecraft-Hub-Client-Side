@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from "../../assets/whitelogo.png";
 import bannerTop from "../../assets/bannertop.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,7 +20,7 @@ const Banner = () => {
           data-aos-offset="0"
           className="flex flex-col justify-center items-center pt-28 pb-16 lg:py-12 md:pt-32 md:pb-0"
         >
-          <img src={logo} className="w-[250px] block md:hidden"></img>
+          <img src={logo} className="w-[300px] block md:hidden"></img>
           <div className="hero">
             <div className="hero-content flex-col-reverse lg:flex-row-reverse">
               <img

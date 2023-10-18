@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import { MyContext } from "../../Main Layout/MainLayout";
+import Footer from "../../Components/Footer/Footer";
+import redLogo from "../../assets/logo.png";
+import whiteLogo from "../../assets/whitelogo.png";
 
 const AddItems = () => {
   const { isButtonOn } = useContext(MyContext);
@@ -38,14 +41,26 @@ const AddItems = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div style={{ color: isButtonOn ? "black" : "white" }} className="mt-10">
+      <div
+        style={{ color: isButtonOn ? "black" : "white" }}
+        className="mt-32 lg:mt-14"
+      >
+        {isButtonOn ? (
+          <div className="flex justify-center items-center mb-4">
+            <img src={redLogo} className="w-[300px] block md:hidden"></img>
+          </div>
+        ) : (
+          <div className="flex justify-center items-center mb-4">
+            <img src={whiteLogo} className="w-[300px] block md:hidden"></img>
+          </div>
+        )}
         <h1 className="text-[#D72323] text-center text-4xl">Add New Items</h1>
         {/* style={{ backgroundColor: isButtonOn ? "white" : "#0a0f18" }} */}
-        <p className="text-center py-3">
-          🍽️ Elevate Your Culinary Experience with{" "}
-          <span className="text-[#D72323]">Tastecraft Hub</span> 🍹
+        <p className="text-center py-3 mx-8">
+          Elevate Your Culinary Experience with{" "}
+          <span className="text-[#D72323]">Tastecraft Hub</span>
         </p>
-        <p className="text-center max-w-2xl mx-auto">
+        <p className="text-center lg:max-w-2xl lg:mx-auto mx-6">
           {" "}
           We understand that great meals begin with exceptional ingredients. As
           your dedicated food and beverage supplier, we take pride in providing
@@ -187,15 +202,16 @@ const AddItems = () => {
               className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
             />
           </div>
-          <div className="pb-12 text-white w-1/5 mx-auto">
+          <div className="pb-12 text-white w-1/3 md:w-1/5 mx-auto">
             <input
               type="submit"
               value="Add Item"
-              className="font-rancho bg-[#D72323] w-full py-3 text-2xl rounded-lg hover:bg-[#b41a1a]"
+              className="font-rancho bg-[#D72323] w-full py-3 text-xl md:text-2xl rounded-lg hover:bg-[#b41a1a]"
             />
           </div>
         </form>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
