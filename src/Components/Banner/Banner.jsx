@@ -18,6 +18,7 @@ const Banner = () => {
           data-aos-easing="ease-in-back"
           data-aos-delay="300"
           data-aos-offset="0"
+          data-aos-duration="500"
           className="flex flex-col justify-center items-center pt-28 pb-16 lg:py-12 md:pt-32 md:pb-0"
         >
           <img src={logo} className="w-[300px] block md:hidden"></img>
