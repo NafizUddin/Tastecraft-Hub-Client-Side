@@ -6,6 +6,7 @@ import MyCart from "../Pages/My Cart/MyCart";
 import AddItems from "../Pages/Add Items/AddItems";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import ProductPage from "../Pages/Product Page/ProductPage";
 
 const MainRoute = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const MainRoute = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/brands/:brand",
+        element: <ProductPage></ProductPage>,
+        loader: ({ params }) =>
+          fetch(
+            `https://tastecraft-hub-server-side.vercel.app/brands/${params.brand}`
+          ),
       },
     ],
   },

@@ -20,7 +20,7 @@ const Home = () => {
   const { isButtonOn } = useContext(MyContext);
   const [counterOn, setCounterOn] = useState(false);
   const allBrands = useLoaderData();
-  console.log(allBrands);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -74,7 +74,7 @@ const Home = () => {
               <div>
                 <img src={serve} className="w-16" />
               </div>
-              <p
+              <div
                 style={{ color: isButtonOn ? "black" : "white" }}
                 className="flex gap-3 items-center md:text-2xl lg:text-xl xl:text-2xl"
               >
@@ -92,13 +92,13 @@ const Home = () => {
                   </div>
                 </ScrollTrigger>
                 <p>Popular Testy Foods Item</p>
-              </p>
+              </div>
             </div>
             <div className="flex gap-7 items-center justify-start">
               <div>
                 <img src={customer} className="w-16" />
               </div>
-              <p
+              <div
                 style={{ color: isButtonOn ? "black" : "white" }}
                 className="md:text-2xl flex gap-3 items-center lg:text-xl xl:text-2xl"
               >
@@ -121,13 +121,13 @@ const Home = () => {
                   </div>
                 </ScrollTrigger>
                 <p>Satisfied Customers</p>
-              </p>
+              </div>
             </div>
             <div className="flex gap-7 items-center lg:items-center">
               <div>
                 <img src={certified} className="w-16" />
               </div>
-              <p
+              <div
                 style={{ color: isButtonOn ? "black" : "white" }}
                 className="md:text-2xl flex gap-3 items-center lg:text-xl xl:text-2xl"
               >
@@ -146,13 +146,13 @@ const Home = () => {
                   </div>
                 </ScrollTrigger>
                 <p>Years Of Experience</p>
-              </p>
+              </div>
             </div>
             <div className="flex gap-7 items-center lg:items-center">
               <div>
                 <img src={online} className="w-16" />
               </div>
-              <p
+              <div
                 style={{ color: isButtonOn ? "black" : "white" }}
                 className="md:text-2xl flex gap-3 items-center lg:text-xl xl:text-2xl"
               >
@@ -170,7 +170,7 @@ const Home = () => {
                   </div>
                 </ScrollTrigger>
                 <p>Foods Items Online Orders</p>
-              </p>
+              </div>
             </div>
           </div>
         </div>

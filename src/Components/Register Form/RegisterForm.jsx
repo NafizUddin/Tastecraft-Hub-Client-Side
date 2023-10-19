@@ -2,13 +2,17 @@ import { useContext, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { MyContext } from "../../Main Layout/MainLayout";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../Custom Hooks/useAuth";
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passValidation, setPassValidation] = useState(0);
+  const { createUser, updateUserProfile } = useAuth();
   const { isButtonOn } = useContext(MyContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,9 +35,38 @@ const RegisterForm = () => {
       setPassValidation(2);
       return;
     } else if (!termsAccepted) {
-      Swal("Oopss", "Please Accept our terms and conditions", "warning");
+      Swal.fire("Oopss", "Please Accept our terms and conditions", "warning");
       return;
     }
+
+    createUser(email, password)
+      .then(() => {
+        updateUserProfile(name, photoURL).then(() => {
+          const user = { email };
+
+          fetch("https://tastecraft-hub-server-side.vercel.app/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              Swal.fire(
+                "Success!",
+                "You have registered your account successfully!",
+                "success"
+              );
+              navigate(location?.state ? location.state : "/");
+            });
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code.split("auth/")[1];
+        Swal.fire("Ooppss!", `${errorCode}`, "error");
+      });
   };
   return (
     <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0">

@@ -3,12 +3,53 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MyContext } from "../../Main Layout/MainLayout";
+import useAuth from "../../Custom Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const { isButtonOn } = useContext(MyContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { logInWithGoogle, logInWithGithub, signInUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleGoogleLogin = () => {
+    logInWithGoogle()
+      .then(() => {
+        Swal.fire("Success!", "You have logged in with Google!", "success");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => console.log(error.code));
+  };
+
+  const handleGithubLogin = () => {
+    logInWithGithub()
+      .then(() => {
+        Swal.fire("Success!", "You have logged in with Github!", "success");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => console.log(error.code));
+    //   Swal.fire("Ooppss!", `${error.message}`, "error")
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    signInUser(email, password)
+      .then(() => {
+        Swal.fire("Success!", "You have logged in successfully!", "success");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        Swal.fire("Ooppss!", "Your Email or Password didn't match", "error");
+        console.log(error.code);
+      });
+  };
   return (
     <div className="flex flex-col items-center justify-center px-6 mx-auto lg:py-0">
       <div className="w-full rounded-lg md:mt-0 sm:max-w-md xl:p-0">
@@ -19,7 +60,7 @@ const LoginForm = () => {
           >
             Login to your account
           </h1>
-          <form className="space-y-4 md:space-y-6">
+          <form onSubmit={handleSignIn} className="space-y-4 md:space-y-6">
             <div>
               <label
                 style={{ color: isButtonOn ? "#D72323" : "white" }}
@@ -35,7 +76,7 @@ const LoginForm = () => {
                 }}
                 type="email"
                 name="email"
-                className="border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                 placeholder="Enter your email address"
                 required
               />
@@ -57,7 +98,7 @@ const LoginForm = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id=""
-                  className="bg-[#F3F3F3] border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                  className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
                   placeholder="••••••••"
                   required
                 />
@@ -121,10 +162,10 @@ const LoginForm = () => {
             <hr className="w-36" />
           </div>
           <div className="flex items-center justify-center gap-4">
-            <button>
+            <button onClick={handleGoogleLogin}>
               <FcGoogle className="text-3xl"></FcGoogle>
             </button>
-            <button>
+            <button onClick={handleGithubLogin}>
               <BsGithub
                 style={{ color: isButtonOn ? "" : "white" }}
                 className="text-3xl"
