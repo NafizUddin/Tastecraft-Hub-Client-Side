@@ -10,6 +10,10 @@ import { useEffect, useState } from "react";
 import ItemCard from "../../Components/Item Cards/ItemCard";
 
 const ProductPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const selectedBrand = useLoaderData();
 
   const brandName = selectedBrand.brandName;
