@@ -6,10 +6,24 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { useEffect, useState } from "react";
+import ItemCard from "../../Components/Item Cards/ItemCard";
 
 const ProductPage = () => {
   const selectedBrand = useLoaderData();
-  console.log(selectedBrand);
+
+  const brandName = selectedBrand.brandName;
+
+  const [singleBrandItems, setSingleBrandItems] = useState([]);
+
+  useEffect(() => {
+    fetch("https://tastecraft-hub-server-side.vercel.app/items")
+      .then((res) => res.json())
+      .then((data) =>
+        setSingleBrandItems(data.filter((item) => item.brand === brandName))
+      );
+  }, [brandName]);
+  console.log(singleBrandItems);
 
   return (
     <div>
@@ -63,10 +77,22 @@ const ProductPage = () => {
         </Swiper>
       </div>
 
-      <div className="my-10">
+      <div className="my-16">
         <h1 className="font-bold text-5xl text-[#D72323] text-center">
           {selectedBrand.brandName}&apos;s Items
         </h1>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-10 pb-10 md:mx-8 xl:mx-0">
+          <div className="mt-16 lg:mt-0 lg:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mx-6 xl:mx-0">
+              {singleBrandItems.map((item) => (
+                <ItemCard key={item._id} item={item}></ItemCard>
+              ))}
+            </div>
+          </div>
+          {/* Sidebar */}
+          <div></div>
+        </div>
       </div>
     </div>
   );
