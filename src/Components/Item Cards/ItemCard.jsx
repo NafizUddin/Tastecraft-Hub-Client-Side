@@ -59,7 +59,7 @@ const ItemCard = ({ item }) => {
           </span>
         </div>
 
-        <div className="card-actions justify-center gap-10">
+        <div className="card-actions justify-center xl:gap-10">
           <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
             View Details
           </button>

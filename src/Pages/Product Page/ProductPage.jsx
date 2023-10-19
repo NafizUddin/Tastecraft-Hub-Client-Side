@@ -6,8 +6,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ItemCard from "../../Components/Item Cards/ItemCard";
+import { MyContext } from "../../Main Layout/MainLayout";
+import { BiArrowBack } from "react-icons/bi";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { BsTelephoneFill } from "react-icons/bs";
+import Footer from "../../Components/Footer/Footer";
 
 const ProductPage = () => {
   useEffect(() => {
@@ -15,6 +21,8 @@ const ProductPage = () => {
   }, []);
 
   const selectedBrand = useLoaderData();
+
+  const { isButtonOn } = useContext(MyContext);
 
   const brandName = selectedBrand.brandName;
 
@@ -95,8 +103,89 @@ const ProductPage = () => {
             </div>
           </div>
           {/* Sidebar */}
-          <div></div>
+          <div>
+            <h1
+              style={{ color: isButtonOn ? "black" : "white" }}
+              className="text-2xl pl-3 text-center pb-5 font-medium"
+            >
+              Food Item Tags
+            </h1>
+            <div className="grid grid-cols-12 grid-rows-3 gap-3">
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-4 rounded-xl text-center py-2 text-white"
+              >
+                Burger
+              </div>
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-4 rounded-xl text-center py-2 text-white"
+              >
+                Pizza
+              </div>
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-4 rounded-xl text-center py-2 text-white"
+              >
+                Pasta
+              </div>
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-6 rounded-xl text-center py-2 text-white"
+              >
+                Chicken
+              </div>
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-5 rounded-xl text-center py-2 text-white"
+              >
+                Sandwich
+              </div>
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-5 rounded-xl text-center py-2 text-white"
+              >
+                Soft Drinks
+              </div>
+              <div
+                style={{ backgroundColor: isButtonOn ? "#D72323" : "#ff8080" }}
+                className="col-span-4 rounded-xl text-center py-2 text-white"
+              >
+                Coffee
+              </div>
+            </div>
+            <div className="bg-violet-50 mt-7 py-5">
+              <h1
+                style={{ color: isButtonOn ? "black" : "white" }}
+                className="text-2xl text-center pb-5 font-medium"
+              >
+                Get In Touch
+              </h1>
+              <div className="flex gap-3 items-center pl-4">
+                <div className="text-xl">
+                  <FaLocationDot></FaLocationDot>
+                </div>
+                <p>Honey Business, 24 Fifth street, Los Angeles, USA</p>
+              </div>
+              <div className="flex gap-3 items-center py-4 pl-4">
+                <div className="text-xl">
+                  <MdEmail></MdEmail>
+                </div>
+                <p className="lg:text-sm xl:text-base">
+                  tastecraft.hub@gmail.com
+                </p>
+              </div>
+              <div className="flex gap-3 items-center pt-1 pb-4 pl-4">
+                <div className="text-xl">
+                  <BsTelephoneFill></BsTelephoneFill>
+                </div>
+                <p>(+01) 123 456 7890</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <Footer></Footer>
       </div>
     </div>
   );
