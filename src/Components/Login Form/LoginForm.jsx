@@ -15,7 +15,7 @@ const LoginForm = () => {
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1
             style={{ color: isButtonOn ? "#D72323" : "white" }}
-            className="text-3xl font-semibold leading-tight tracking-tight text-[#403F3F] border-b pt-4 pb-6"
+            className="text-3xl font-semibold leading-tight tracking-tight border-b pt-4 pb-6"
           >
             Login to your account
           </h1>
@@ -24,7 +24,7 @@ const LoginForm = () => {
               <label
                 style={{ color: isButtonOn ? "#D72323" : "white" }}
                 htmlFor="email"
-                className="block mb-2 text-lg font-semibold text-[#403F3F]"
+                className="block mb-2 text-lg font-semibold"
               >
                 Email Address
               </label>
@@ -44,7 +44,7 @@ const LoginForm = () => {
               <label
                 style={{ color: isButtonOn ? "#D72323" : "white" }}
                 htmlFor="password"
-                className="block mb-2 text-lg font-semibold text-[#403F3F]"
+                className="block mb-2 text-lg font-semibold"
               >
                 Password
               </label>
@@ -93,14 +93,18 @@ const LoginForm = () => {
                   />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label htmlFor="remember" className="text-gray-500">
+                  <label
+                    style={{ color: isButtonOn ? "#455A64" : "white" }}
+                    htmlFor="remember"
+                  >
                     Remember me
                   </label>
                 </div>
               </div>
               <a
+                style={{ color: isButtonOn ? "#455A64" : "white" }}
                 href="#"
-                className="text-sm font-medium text-primary-600 hover:underline"
+                className="text-sm font-medium hover:underline"
               >
                 Forgot password?
               </a>
@@ -121,7 +125,10 @@ const LoginForm = () => {
               <FcGoogle className="text-3xl"></FcGoogle>
             </button>
             <button>
-              <BsGithub className="text-3xl"></BsGithub>
+              <BsGithub
+                style={{ color: isButtonOn ? "" : "white" }}
+                className="text-3xl"
+              ></BsGithub>
             </button>
           </div>
           <h1
