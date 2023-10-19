@@ -13,6 +13,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneFill } from "react-icons/bs";
 import Footer from "../../Components/Footer/Footer";
+import noFood from "../../assets/no-fast-food.png";
 
 const ProductPage = () => {
   useEffect(() => {
@@ -95,11 +96,20 @@ const ProductPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-10 pb-10 md:mx-8 xl:mx-0">
           <div className="mt-16 lg:mt-0 lg:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mx-6 xl:mx-0">
-              {singleBrandItems.map((item) => (
-                <ItemCard key={item._id} item={item}></ItemCard>
-              ))}
-            </div>
+            {singleBrandItems.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mx-6 xl:mx-0">
+                {singleBrandItems.map((item) => (
+                  <ItemCard key={item._id} item={item}></ItemCard>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col justify-center items-center gap-5">
+                <img src={noFood} />
+                <p className="font-bold text-4xl">
+                  Sorry, no foods available currently
+                </p>
+              </div>
+            )}
           </div>
           {/* Sidebar */}
           <div>
