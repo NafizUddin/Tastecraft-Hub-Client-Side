@@ -61,9 +61,12 @@ const ItemCard = ({ item }) => {
         </div>
 
         <div className="card-actions justify-center xl:gap-10">
-          <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
-            View Details
-          </button>
+          <Link to={`/itemDetails/${_id}`}>
+            <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
+              View Details
+            </button>
+          </Link>
+
           <Link to={`/updateItems/${_id}`}>
             <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
               Update Item

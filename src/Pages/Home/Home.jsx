@@ -48,7 +48,7 @@ const Home = () => {
       <h1 className="text-[#D72323] text-center text-5xl font-bold">
         About Tastecraft Hub
       </h1>
-      <div className="flex flex-col lg:flex-row gap-8 md:mx-8 items-center mt-12 mx-6 xl:mx-0">
+      <div className="flex flex-col lg:flex-row gap-8 md:mx-8 items-center mt-16 mx-6 xl:mx-0">
         <div className="flex-1">
           <h1
             style={{ color: isButtonOn ? "" : "white" }}
