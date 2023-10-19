@@ -1,14 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
+const all = import.meta.env;
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDBGTIUL71PWaW7_pEg0MGejgtNjeAcFo0",
-  authDomain: "tastecraft-hub-assignment-10.firebaseapp.com",
-  projectId: "tastecraft-hub-assignment-10",
-  storageBucket: "tastecraft-hub-assignment-10.appspot.com",
-  messagingSenderId: "67745599972",
-  appId: "1:67745599972:web:e27de606dcf7791eb637f1",
+  apiKey: all.VITE_apiKey,
+  authDomain: all.VITE_authDomain,
+  projectId: all.VITE_projectId,
+  storageBucket: all.VITE_storageBucket,
+  messagingSenderId: all.VITE_messagingSenderId,
+  appId: all.VITE_appId,
 };
 
 // Initialize Firebase

@@ -105,7 +105,10 @@ const ProductPage = () => {
             ) : (
               <div className="flex flex-col justify-center items-center gap-5">
                 <img src={noFood} />
-                <p className="font-bold text-4xl">
+                <p
+                  style={{ color: isButtonOn ? "black" : "white" }}
+                  className="font-bold text-4xl"
+                >
                   Sorry, no foods available currently
                 </p>
               </div>
