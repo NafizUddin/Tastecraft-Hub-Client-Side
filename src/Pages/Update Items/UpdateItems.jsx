@@ -1,22 +1,29 @@
 import { useContext, useEffect, useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import { MyContext } from "../../Main Layout/MainLayout";
-import Footer from "../../Components/Footer/Footer";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import redLogo from "../../assets/logo.png";
 import whiteLogo from "../../assets/whitelogo.png";
-import Swal from "sweetalert2";
+import { MyContext } from "../../Main Layout/MainLayout";
+import Footer from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import { BiArrowBack } from "react-icons/bi";
 
-const AddItems = () => {
+const UpdateItems = () => {
+  const selectedItems = useLoaderData();
+  console.log(selectedItems);
+
   const { isButtonOn } = useContext(MyContext);
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedType, setSelectedType] = useState("");
-  const [selectedRating, setSelectedRating] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState(selectedItems.brand);
+  const [selectedType, setSelectedType] = useState(selectedItems.type);
+  const [selectedRating, setSelectedRating] = useState(selectedItems.rating);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddItems = (e) => {
+  const handleUpdateItems = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -27,7 +34,7 @@ const AddItems = () => {
     const photo = form.photo.value;
     const rating = selectedRating;
     const description = form.description.value;
-    const item = {
+    const updatedItem = {
       name,
       brand,
       type,
@@ -36,20 +43,23 @@ const AddItems = () => {
       rating,
       description,
     };
-    console.log(item);
+    console.log(updatedItem);
 
-    fetch("https://tastecraft-hub-server-side.vercel.app/items", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(item),
-    })
+    fetch(
+      `https://tastecraft-hub-server-side.vercel.app/items/${selectedItems._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedItem),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
-          Swal.fire("Good job!", "You added a new item", "success");
+        if (data.modifiedCount > 0) {
+          Swal.fire("Good job!", "You have updated the item", "success");
           form.reset();
         }
       });
@@ -71,7 +81,9 @@ const AddItems = () => {
             <img src={whiteLogo} className="w-[300px] block md:hidden"></img>
           </div>
         )}
-        <h1 className="text-[#D72323] text-center text-4xl">Add New Items</h1>
+        <h1 className="text-[#D72323] text-center text-4xl">
+          Update Existing Items
+        </h1>
         {/* style={{ backgroundColor: isButtonOn ? "white" : "#0a0f18" }} */}
         <p className="text-center py-3 mx-8">
           Elevate Your Culinary Experience with{" "}
@@ -79,12 +91,15 @@ const AddItems = () => {
         </p>
         <p className="text-center lg:max-w-2xl lg:mx-auto mx-6">
           {" "}
-          We understand that great meals begin with exceptional ingredients. As
-          your dedicated food and beverage supplier, we take pride in providing
-          top-quality products that meet the diverse needs of your culinary
-          ventures.
+          We&apos;re dedicated to delivering the highest quality ingredients and
+          beverages to elevate your culinary creations. Your satisfaction is our
+          priority, and we look forward to serving your culinary needs with
+          excellence.
         </p>
-        <form onSubmit={handleAddItems} className="w-11/12 mx-auto my-8">
+        <form
+          onSubmit={handleUpdateItems}
+          className="w-11/12 mx-auto mt-8 mb-5"
+        >
           <div className="flex gap-7 px-8 mb-4">
             <div className="flex-1">
               <label
@@ -100,6 +115,7 @@ const AddItems = () => {
                 type="text"
                 required
                 name="name"
+                defaultValue={selectedItems.name}
                 placeholder="Enter Item Name"
                 className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
               />
@@ -118,6 +134,7 @@ const AddItems = () => {
                 onChange={(e) => setSelectedBrand(e.target.value)}
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 className="my-2 border border-[#D72323] text-sm focus:ring-red-500 focus:border-red-500 block w-full py-3 px-4 rounded"
+                defaultValue={selectedItems.brand}
               >
                 <option value="">Select a brand</option>
                 <option value="McDonald's">McDonald&apos;s</option>
@@ -144,6 +161,7 @@ const AddItems = () => {
                 onChange={(e) => setSelectedType(e.target.value)}
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 className="my-2 border border-[#D72323] text-sm focus:ring-red-500 focus:border-red-500 block w-full py-3 px-4 rounded"
+                defaultValue={selectedItems.type}
               >
                 <option value="">Select a item</option>
                 <option value="Burgers">Burgers</option>
@@ -171,6 +189,7 @@ const AddItems = () => {
                 type="text"
                 name="price"
                 required
+                defaultValue={selectedItems.price}
                 placeholder="Enter Item Price"
                 className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
               />
@@ -191,6 +210,7 @@ const AddItems = () => {
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 type="text"
                 name="photo"
+                defaultValue={selectedItems.photo}
                 placeholder="Enter Photo URL"
                 className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
               />
@@ -209,6 +229,7 @@ const AddItems = () => {
                 onChange={(e) => setSelectedRating(e.target.value)}
                 style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
                 className="my-2 border border-[#D72323] text-sm focus:ring-red-500 focus:border-red-500 block w-full py-3 px-4 rounded"
+                defaultValue={selectedItems.rating}
               >
                 <option value="">Select Rating</option>
                 <option value="1">1</option>
@@ -232,22 +253,31 @@ const AddItems = () => {
               style={{ backgroundColor: isButtonOn ? "white" : "#676767" }}
               type="text"
               name="description"
+              defaultValue={selectedItems.description}
               placeholder="Enter Item Description"
               className="w-full py-3 px-4 my-2 rounded border border-[#D72323] focus:ring-red-500 focus:border-red-500"
             />
           </div>
-          <div className="pb-12 text-white w-1/3 md:w-1/5 mx-auto">
+          <div className="pb-6 text-white w-1/3 md:w-1/5 mx-auto">
             <input
               type="submit"
-              value="Add Item"
+              value="Update Item"
               className="bg-[#D72323] w-full py-3 text-xl md:text-2xl rounded-lg hover:bg-[#b41a1a]"
             />
           </div>
         </form>
+        <div className="flex items-center justify-center">
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-[#D72323] text-white py-3 px-5 rounded-lg flex items-center gap-2 hover:bg-[#b41a1a]"
+          >
+            <BiArrowBack></BiArrowBack> Go Back
+          </button>
+        </div>
       </div>
       <Footer></Footer>
     </div>
   );
 };
 
-export default AddItems;
+export default UpdateItems;

@@ -9,7 +9,6 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useContext, useEffect, useState } from "react";
 import ItemCard from "../../Components/Item Cards/ItemCard";
 import { MyContext } from "../../Main Layout/MainLayout";
-import { BiArrowBack } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { BsTelephoneFill } from "react-icons/bs";
@@ -154,20 +153,29 @@ const ProductPage = () => {
                 Coffee
               </div>
             </div>
-            <div className="bg-violet-50 mt-7 py-5">
+            <div
+              style={{ backgroundColor: isButtonOn ? "#F3F4F6" : "" }}
+              className="mt-7 py-5"
+            >
               <h1
                 style={{ color: isButtonOn ? "black" : "white" }}
                 className="text-2xl text-center pb-5 font-medium"
               >
                 Get In Touch
               </h1>
-              <div className="flex gap-3 items-center pl-4">
+              <div
+                style={{ color: isButtonOn ? "black" : "white" }}
+                className="flex gap-3 items-center pl-4"
+              >
                 <div className="text-xl">
                   <FaLocationDot></FaLocationDot>
                 </div>
                 <p>Honey Business, 24 Fifth street, Los Angeles, USA</p>
               </div>
-              <div className="flex gap-3 items-center py-4 pl-4">
+              <div
+                style={{ color: isButtonOn ? "black" : "white" }}
+                className="flex gap-3 items-center py-4 pl-4"
+              >
                 <div className="text-xl">
                   <MdEmail></MdEmail>
                 </div>
@@ -175,7 +183,10 @@ const ProductPage = () => {
                   tastecraft.hub@gmail.com
                 </p>
               </div>
-              <div className="flex gap-3 items-center pt-1 pb-4 pl-4">
+              <div
+                style={{ color: isButtonOn ? "black" : "white" }}
+                className="flex gap-3 items-center pt-1 pb-4 pl-4"
+              >
                 <div className="text-xl">
                   <BsTelephoneFill></BsTelephoneFill>
                 </div>
@@ -184,9 +195,8 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
-
-        <Footer></Footer>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

@@ -4,9 +4,10 @@ import { BsFillStarFill } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
 import { useContext } from "react";
 import { MyContext } from "../../Main Layout/MainLayout";
+import { Link } from "react-router-dom";
 
 const ItemCard = ({ item }) => {
-  const { name, type, price, photo, rating } = item;
+  const { name, type, price, photo, rating, _id } = item;
   const { isButtonOn } = useContext(MyContext);
 
   return (
@@ -63,9 +64,11 @@ const ItemCard = ({ item }) => {
           <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
             View Details
           </button>
-          <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
-            Update Item
-          </button>
+          <Link to={`/updateItems/${_id}`}>
+            <button className="px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
+              Update Item
+            </button>
+          </Link>
         </div>
       </div>
     </div>

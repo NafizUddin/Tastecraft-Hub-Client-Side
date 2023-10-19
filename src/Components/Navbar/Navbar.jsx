@@ -132,10 +132,17 @@ const Navbar = () => {
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-52"
                   >
                     <li>
-                      <a>{user.displayName}</a>
+                      <a className="text-lg font-medium hover:bg-[#D72323] hover:text-white">
+                        {user.displayName}
+                      </a>
                     </li>
                     <li>
-                      <a onClick={handleLogOut}>Logout</a>
+                      <a
+                        onClick={handleLogOut}
+                        className="text-lg font-medium hover:bg-[#D72323] hover:text-white"
+                      >
+                        Logout
+                      </a>
                     </li>
                   </ul>
                 </div>
