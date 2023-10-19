@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ProductPage from "../Pages/Product Page/ProductPage";
 import UpdateItems from "../Pages/Update Items/UpdateItems";
+import PrivateRoute from "./PrivateRoute";
 
 const MainRoute = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const MainRoute = createBrowserRouter([
       },
       {
         path: "/updateItems/:id",
-        element: <UpdateItems></UpdateItems>,
+        element: (
+          <PrivateRoute>
+            <UpdateItems></UpdateItems>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://tastecraft-hub-server-side.vercel.app/items/${params.id}`
