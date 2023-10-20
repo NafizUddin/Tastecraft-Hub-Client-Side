@@ -109,7 +109,7 @@ const ProductPage = () => {
                   style={{ color: isButtonOn ? "black" : "white" }}
                   className="font-bold text-4xl"
                 >
-                  Sorry, no foods available currently
+                  Sorry, no items available currently
                 </p>
               </div>
             )}
