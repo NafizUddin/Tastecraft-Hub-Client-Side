@@ -58,9 +58,11 @@ const MainRoute = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
+        loader: () =>
           fetch(
-            `https://tastecraft-hub-server-side.vercel.app/cart/${params.id}`
+            `https://tastecraft-hub-server-side.vercel.app/cart/${localStorage.getItem(
+              "userId"
+            )}`
           ),
       },
       {

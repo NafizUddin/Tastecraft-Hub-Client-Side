@@ -8,14 +8,13 @@ import Swal from "sweetalert2";
 const MyCart = () => {
   const cartItems = useLoaderData();
   console.log(cartItems);
+
   const { isButtonOn } = useContext(MyContext);
 
   const [displayItems, setDisplayItems] = useState(cartItems);
 
   const handleDeleteItem = (item) => {
     const id = item?._id;
-    const email = item?.userEmail;
-    console.log(email, id);
 
     fetch(`https://tastecraft-hub-server-side.vercel.app/cart/${id}`, {
       method: "DELETE",

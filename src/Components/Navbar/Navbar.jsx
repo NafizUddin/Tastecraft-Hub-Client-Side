@@ -62,7 +62,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={`/myCart/${localStorage.getItem("userId")}`}
+          to={`/myCart/${localStorage?.getItem("userId")}`}
           className={({ isActive, isPending }) =>
             isActive
               ? "bg-[#D72323] px-3 py-2 rounded text-white"

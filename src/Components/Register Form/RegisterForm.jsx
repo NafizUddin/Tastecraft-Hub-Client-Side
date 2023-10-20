@@ -54,12 +54,14 @@ const RegisterForm = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              Swal.fire(
-                "Success!",
-                "You have registered your account successfully!",
-                "success"
-              );
-              navigate(location?.state ? location.state : "/");
+              if (data.insertedId) {
+                Swal.fire(
+                  "Success!",
+                  "You have registered your account successfully!",
+                  "success"
+                );
+                navigate(location?.state ? location.state : "/");
+              }
             });
         });
       })
