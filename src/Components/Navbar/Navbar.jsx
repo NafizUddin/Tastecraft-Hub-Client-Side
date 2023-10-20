@@ -11,6 +11,8 @@ const Navbar = () => {
   const { isButtonOn, setIsButtonOn } = useContext(MyContext);
   const { user, logOut } = useAuth();
 
+  const userEmail = user?.email;
+  console.log(userEmail);
   const handleLogOut = () => {
     logOut()
       .then(() =>
@@ -61,7 +63,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/myCart"
+          to={`/myCart/${userEmail}`}
           className={({ isActive, isPending }) =>
             isActive
               ? "bg-[#D72323] px-3 py-2 rounded text-white"

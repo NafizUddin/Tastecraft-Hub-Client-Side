@@ -9,22 +9,38 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import Footer from "../../Components/Footer/Footer";
 import useAuth from "../../Custom Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const ItemDetails = () => {
   const selectedItems = useLoaderData();
 
   const { user } = useAuth();
 
-  const userEmail = user.email;
+  const userEmail = user?.email;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const { isButtonOn } = useContext(MyContext);
   const navigate = useNavigate();
-  console.log(selectedItems);
 
   const cartItems = { selectedItems, userEmail };
+
+  const handleAddToCart = () => {
+    fetch("https://tastecraft-hub-server-side.vercel.app/cart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(cartItems),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire("Good job!", "You added this item to cart", "success");
+        }
+      });
+  };
   return (
     <div>
       <Navbar></Navbar>
@@ -110,7 +126,10 @@ const ItemDetails = () => {
               </div>
             </div>
             <div className="flex items-center justify-center lg:justify-start">
-              <button className="flex items-center gap-2 px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]">
+              <button
+                onClick={handleAddToCart}
+                className="flex items-center gap-2 px-6 py-3 bg-[#D72323] rounded-lg text-white hover:bg-[white] hover:outline hover:text-[#D72323]"
+              >
                 <BsCart3></BsCart3> <span>Add to cart</span>
               </button>
             </div>
@@ -126,10 +145,12 @@ const ItemDetails = () => {
         >
           {selectedItems.description}
         </p>
-        <img
-          src="https://demo2.themelexus.com/foodo2/wp-content/uploads/2023/06/demo-product03.jpg"
-          className="mb-14"
-        />
+        <div className="flex items-center justify-center">
+          <img
+            src="https://demo2.themelexus.com/foodo2/wp-content/uploads/2023/06/demo-product03.jpg"
+            className="mb-14 xl:w-full"
+          />
+        </div>
       </div>
       <Footer></Footer>
     </div>

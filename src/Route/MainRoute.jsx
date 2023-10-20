@@ -52,8 +52,16 @@ const MainRoute = createBrowserRouter([
           ),
       },
       {
-        path: "/myCart",
-        element: <MyCart></MyCart>,
+        path: "/myCart/:email",
+        element: (
+          <PrivateRoute>
+            <MyCart></MyCart>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://tastecraft-hub-server-side.vercel.app/cart/${params.email}`
+          ),
       },
       {
         path: "/login",
