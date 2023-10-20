@@ -131,7 +131,6 @@ const Home = () => {
                 style={{ color: isButtonOn ? "black" : "white" }}
                 className="md:text-2xl flex gap-3 items-center lg:text-xl xl:text-2xl"
               >
-                <span>We’ve</span>
                 <ScrollTrigger
                   onEnter={() => setCounterOn(true)}
                   onExit={() => setCounterOn(false)}

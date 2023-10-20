@@ -26,10 +26,10 @@ const Banner = () => {
             <div className="hero-content flex-col-reverse lg:flex-row-reverse">
               <img
                 src={bannerTop}
-                className="max-w-sm md:max-w-md lg:max-w-xl"
+                className="w-[300px] md:max-w-md lg:max-w-xl"
               />
               <div className="lg:max-w-2xl">
-                <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold text-white text-center lg:text-left">
+                <h1 className="text-3xl md:text-3xl lg:text-5xl font-bold text-white text-center lg:text-left">
                   Serving Flavorful Moments, One Bite at a Time – <br /> Your
                   Culinary Partner for Quality Delights!
                 </h1>
