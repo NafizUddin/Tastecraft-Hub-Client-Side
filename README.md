@@ -1,4 +1,4 @@
-# [Tastecraft Hub](https://github.com/programming-hero-web-course-4/b8a9-event-management-NafizUddin) <img alt="Static Badge" src="https://img.shields.io/badge/Last_commit-20/_10/_2023-green">
+# [Tastecraft Hub](https://github.com/programming-hero-web-course-4/b8a10-brandshop-client-side-NafizUddin) <img alt="Static Badge" src="https://img.shields.io/badge/Last_commit-20/_10/_2023-green">
 
 This is the 10th assignment of Complete Web Development Course of Programming Hero.
 
@@ -6,7 +6,7 @@ This is the 10th assignment of Complete Web Development Course of Programming He
 
 Click here to see the live server: [https://planify-events-react-auth.netlify.app/](https://planify-events-react-auth.netlify.app/)
 
-## [Some Project Features](https://github.com/programming-hero-web-course2/my-course-roster-NafizUddin)
+## [Some Project Features](https://github.com/programming-hero-web-course-4/b8a10-brandshop-client-side-NafizUddin)
 
 There are some features in this project. Here I have provided some of them:
 

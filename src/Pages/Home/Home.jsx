@@ -30,7 +30,7 @@ const Home = () => {
       <Banner></Banner>
       {/* Brand Card Section*/}
       <div className="my-16">
-        <h1 className="text-[#D72323] text-center text-5xl font-bold">
+        <h1 className="text-[#D72323] text-center text-4xl md:text-5xl font-bold">
           Our Partnership With
         </h1>
         <div
@@ -45,7 +45,7 @@ const Home = () => {
       </div>
       {/* Brand Card Ends */}
       {/* About Us starts */}
-      <h1 className="text-[#D72323] text-center text-5xl font-bold">
+      <h1 className="text-[#D72323] text-center text-4xl md:text-5xl font-bold">
         About Tastecraft Hub
       </h1>
       <div className="flex flex-col lg:flex-row gap-8 md:mx-8 items-center mt-16 mx-6 xl:mx-0">

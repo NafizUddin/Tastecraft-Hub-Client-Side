@@ -1,7 +1,7 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import { MyContext } from "../../Main Layout/MainLayout";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Rating from "react-rating";
 import { BsArrowLeft, BsFillStarFill } from "react-icons/bs";
 import { BsStar } from "react-icons/bs";
@@ -23,24 +23,44 @@ const ItemDetails = () => {
     window.scrollTo(0, 0);
   }, []);
   const { isButtonOn } = useContext(MyContext);
+  const [isExists, setIsExists] = useState(null);
   const navigate = useNavigate();
 
   const cartItems = { selectedItems, userId, userEmail };
 
-  const handleAddToCart = () => {
-    fetch("https://tastecraft-hub-server-side.vercel.app/cart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(cartItems),
-    })
+  useEffect(() => {
+    fetch(
+      `https://tastecraft-hub-server-side.vercel.app/cart/${localStorage.getItem(
+        "userId"
+      )}`
+    )
       .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire("Good job!", "You added this item to Cart", "success");
-        }
-      });
+      .then((data) =>
+        setIsExists(
+          data.find((item) => item.selectedItems._id === selectedItems._id)
+        )
+      );
+  }, [selectedItems._id]);
+
+  const handleAddToCart = () => {
+    console.log(isExists);
+    if (!isExists) {
+      fetch("https://tastecraft-hub-server-side.vercel.app/cart", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartItems),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire("Good job!", "You added this item to Cart", "success");
+          }
+        });
+    } else {
+      Swal.fire("Ooppss!", "This item is already in cart", "error");
+    }
   };
   return (
     <div>

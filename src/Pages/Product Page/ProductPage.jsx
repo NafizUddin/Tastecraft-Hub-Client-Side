@@ -35,7 +35,6 @@ const ProductPage = () => {
         setSingleBrandItems(data.filter((item) => item.brand === brandName))
       );
   }, [brandName]);
-  console.log(singleBrandItems);
 
   return (
     <div>

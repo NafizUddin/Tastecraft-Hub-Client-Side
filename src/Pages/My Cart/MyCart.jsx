@@ -1,15 +1,17 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import { MyContext } from "../../Main Layout/MainLayout";
 import { useContext, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Swal from "sweetalert2";
+import { BsArrowLeft } from "react-icons/bs";
 
 const MyCart = () => {
   const cartItems = useLoaderData();
-  console.log(cartItems);
 
   const { isButtonOn } = useContext(MyContext);
+
+  const navigate = useNavigate();
 
   const [displayItems, setDisplayItems] = useState(cartItems);
 
@@ -43,8 +45,14 @@ const MyCart = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="mt-10 mx-6 xl:mx-0">
-        <h1 className="text-center text-5xl font-bold text-[#D72323]">
+      <div className="mt-7 ml-8">
+        <div onClick={() => navigate(-1)} className="flex items-center gap-3">
+          <BsArrowLeft className="text-[#D72323]"></BsArrowLeft>
+          <span className="text-2xl text-[#D72323]">Go Back</span>
+        </div>
+      </div>
+      <div className="mt-7 mx-6 xl:mx-0">
+        <h1 className="text-center text-4xl md:text-5xl font-bold text-[#D72323]">
           Your Cart Items
         </h1>
         <div className="overflow-x-auto mt-8 pb-20">
