@@ -11,13 +11,12 @@ const Navbar = () => {
   const { isButtonOn, setIsButtonOn } = useContext(MyContext);
   const { user, logOut } = useAuth();
 
-  const userEmail = user?.email;
-  console.log(userEmail);
   const handleLogOut = () => {
     logOut()
-      .then(() =>
-        Swal.fire("Success!", "You have logged out successfully!", "success")
-      )
+      .then(() => {
+        localStorage.removeItem("userId");
+        Swal.fire("Success!", "You have logged out successfully!", "success");
+      })
       .catch((error) => console.log(error.code));
   };
 
@@ -63,7 +62,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to={`/myCart/${userEmail}`}
+          to={`/myCart/${localStorage.getItem("userId")}`}
           className={({ isActive, isPending }) =>
             isActive
               ? "bg-[#D72323] px-3 py-2 rounded text-white"

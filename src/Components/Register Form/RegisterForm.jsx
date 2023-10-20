@@ -40,9 +40,10 @@ const RegisterForm = () => {
     }
 
     createUser(email, password)
-      .then(() => {
+      .then((res) => {
+        localStorage.setItem("userId", res.user.uid);
         updateUserProfile(name, photoURL).then(() => {
-          const user = { email };
+          const user = { name, email, firebaseId: res.user.uid };
 
           fetch("https://tastecraft-hub-server-side.vercel.app/users", {
             method: "POST",
@@ -53,7 +54,6 @@ const RegisterForm = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               Swal.fire(
                 "Success!",
                 "You have registered your account successfully!",

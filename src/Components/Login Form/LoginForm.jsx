@@ -41,7 +41,8 @@ const LoginForm = () => {
     const password = form.get("password");
 
     signInUser(email, password)
-      .then(() => {
+      .then((res) => {
+        localStorage.setItem("userId", res.user.uid);
         Swal.fire("Success!", "You have logged in successfully!", "success");
         navigate(location?.state ? location.state : "/");
       })

@@ -17,6 +17,7 @@ const ItemDetails = () => {
   const { user } = useAuth();
 
   const userEmail = user?.email;
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +25,7 @@ const ItemDetails = () => {
   const { isButtonOn } = useContext(MyContext);
   const navigate = useNavigate();
 
-  const cartItems = { selectedItems, userEmail };
+  const cartItems = { selectedItems, userId, userEmail };
 
   const handleAddToCart = () => {
     fetch("https://tastecraft-hub-server-side.vercel.app/cart", {
@@ -37,7 +38,7 @@ const ItemDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          Swal.fire("Good job!", "You added this item to cart", "success");
+          Swal.fire("Good job!", "You added this item to Cart", "success");
         }
       });
   };
